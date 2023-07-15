@@ -20,28 +20,35 @@ class ForgotPasswordScreen extends StatelessWidget {
           onPressed: () {},
         ),
       ),
-      body: SafeArea(
+      body: GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
+        child: SafeArea(
+            child: SingleChildScrollView(
           child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          GlobalLargeText(title: 'Forgot Password'),
-          SizedBox(height: size.height * 0.025),
-          Image(
-            image: AssetImage('images/Cloudlock.png'),
-            fit: BoxFit.contain,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              GlobalLargeText(title: 'Forgot Password'),
+              SizedBox(height: size.height * 0.025),
+              Image(
+                image: AssetImage('images/Cloudlock.png'),
+                fit: BoxFit.contain,
+              ),
+              SizedBox(height: size.height * 0.03),
+              GlobalInputfield(title: 'Email Address'),
+              // Spacer(),
+              SizedBox(height: size.height * 0.325),
+
+              Text(
+                'Please write your email to receive a \nconfirmation code to set a new password',
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+              SizedBox(height: size.height * 0.025),
+              GlobalButton(title: 'Confirm Email')
+            ],
           ),
-          SizedBox(height: size.height * 0.03),
-          GlobalInputfield(title: 'Email Address'),
-          Spacer(),
-          Text(
-            'Please write your email to receive a \nconfirmation code to set a new password',
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodySmall,
-          ),
-          SizedBox(height: size.height * 0.025),
-          GlobalButton(title: 'Confirm Email')
-        ],
-      )),
+        )),
+      ),
     );
   }
 }

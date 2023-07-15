@@ -21,35 +21,42 @@ class SignUpPage extends StatelessWidget {
           onPressed: () {},
         ),
       ),
-      body: SafeArea(
-        child: GestureDetector(
-          onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            GlobalLargeText(title: 'Sign Up'),
-            Spacer(),
-            GlobalInputfield(title: 'Username'),
-            GlobalInputfield(title: 'Password'),
-            GlobalInputfield(title: 'Email Address'),
-            SizedBox(height: size.height * 0.03),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Remember me',
-                    style: GoogleFonts.manrope(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w500,
-                        color: blackcolor),
-                  ),
-                  Icon(FontAwesomeIcons.toggleOn, color: greencolor)
-                ],
+      body: GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              GlobalLargeText(title: 'Sign Up'),
+              // Spacer(),
+              SizedBox(height: size.height * 0.25),
+
+              GlobalInputfield(title: 'Username'),
+              GlobalInputfield(title: 'Password'),
+              GlobalInputfield(title: 'Email Address'),
+              SizedBox(height: size.height * 0.03),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Remember me',
+                      style: GoogleFonts.manrope(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w500,
+                          color: blackcolor),
+                    ),
+                    Icon(FontAwesomeIcons.toggleOn, color: greencolor)
+                  ],
+                ),
               ),
-            ),
-            Spacer(),
-            GlobalButton(title: 'Login')
-          ]),
+              // Spacer(),
+              SizedBox(height: size.height * 0.229),
+
+              GlobalButton(title: 'Login')
+            ]),
+          ),
         ),
       ),
     );

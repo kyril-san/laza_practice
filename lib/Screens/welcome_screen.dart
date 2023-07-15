@@ -21,66 +21,73 @@ class WelcomeScreen extends StatelessWidget {
           onPressed: () {},
         ),
       ),
-      body: SafeArea(
-        child: GestureDetector(
-          onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            GlobalLargeText(title: 'Welcome'),
-            Text('Please enter your data to continue',
-                style: Theme.of(context).textTheme.bodyMedium),
-            Spacer(),
-            GlobalInputfield(title: 'Username'),
-            GlobalInputfield(title: 'Password'),
-            SizedBox(height: size.height * 0.03),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: Text(
-                  'Forgot Password?',
-                  style: GoogleFonts.inter(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                      color: redcolor),
+      body: GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              GlobalLargeText(title: 'Welcome'),
+              Text('Please enter your data to continue',
+                  style: Theme.of(context).textTheme.bodyMedium),
+              // Spacer(),
+              SizedBox(height: size.height * 0.2),
+
+              GlobalInputfield(title: 'Username'),
+              GlobalInputfield(title: 'Password'),
+              SizedBox(height: size.height * 0.03),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    'Forgot Password?',
+                    style: GoogleFonts.inter(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        color: redcolor),
+                  ),
                 ),
               ),
-            ),
-            SizedBox(height: size.height * 0.025),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: size.width * 0.04),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Remember me',
-                    style: GoogleFonts.manrope(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w500,
-                        color: blackcolor),
-                  ),
-                  Icon(
-                    FontAwesomeIcons.toggleOn,
-                    color: greencolor,
-                  )
-                ],
+              SizedBox(height: size.height * 0.025),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: size.width * 0.04),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Remember me',
+                      style: GoogleFonts.manrope(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w500,
+                          color: blackcolor),
+                    ),
+                    Icon(
+                      FontAwesomeIcons.toggleOn,
+                      color: greencolor,
+                    )
+                  ],
+                ),
               ),
-            ),
-            Spacer(),
-            RichText(
-              textAlign: TextAlign.center,
-              text: TextSpan(children: [
-                TextSpan(
-                    text:
-                        'By connecting your account confirm that you agree \nwith our ',
-                    style: Theme.of(context).textTheme.titleSmall),
-                TextSpan(
-                    text: 'Term and Condition',
-                    style: Theme.of(context).textTheme.bodyLarge)
-              ]),
-            ),
-            SizedBox(height: size.height * 0.025),
-            GlobalButton(title: 'Login')
-          ]),
+              // Spacer(),
+              SizedBox(height: size.height * 0.23),
+
+              RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(children: [
+                  TextSpan(
+                      text:
+                          'By connecting your account confirm that you agree \nwith our ',
+                      style: Theme.of(context).textTheme.titleSmall),
+                  TextSpan(
+                      text: 'Term and Condition',
+                      style: Theme.of(context).textTheme.bodyLarge)
+                ]),
+              ),
+              SizedBox(height: size.height * 0.025),
+              GlobalButton(title: 'Login')
+            ]),
+          ),
         ),
       ),
     );

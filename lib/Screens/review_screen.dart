@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:laza_practice/General-constants/const.dart';
+import 'package:laza_practice/Review-Components/list_of_reviews.dart';
 import 'package:laza_practice/Review-Components/total_reviews.dart';
 
 class ReviewScreen extends StatelessWidget {
@@ -19,9 +20,7 @@ class ReviewScreen extends StatelessWidget {
         ),
         body: SafeArea(
             child: Column(
-          children: [
-            TotalReviews(),
-          ],
+          children: [TotalReviews(), ListOfReviews()],
         )));
   }
 }

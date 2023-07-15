@@ -23,47 +23,59 @@ class _AddNewCardScreenState extends State<AddNewCardScreen>
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.sizeOf(context);
     return Scaffold(
-        appBar: AppBar(
-          leading: BackButton(onPressed: () {}, color: blackcolor),
-          centerTitle: true,
-          title: Text('Add New Card',
-              style: Theme.of(context).textTheme.headlineMedium),
-        ),
         body: SafeArea(
-          child: Column(
-            children: [
-              TabBar(
-                  controller: _controller,
-                  indicator: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.red.withOpacity(0.2),
-                      border: Border.all(color: Colors.orange)),
-                  indicatorPadding: EdgeInsets.symmetric(horizontal: 10),
-                  labelPadding: EdgeInsets.symmetric(vertical: 10),
-                  tabs: [
-                    Icon(
-                      FontAwesomeIcons.ccMastercard,
-                      color: Colors.orange,
-                    ),
-                    Icon(
-                      FontAwesomeIcons.paypal,
-                      color: Colors.blue,
-                    ),
-                    Icon(FontAwesomeIcons.buildingColumns, color: blackcolor)
-                  ]),
-              Expanded(
-                child: TabBarView(
-                    controller: _controller,
-                    physics: NeverScrollableScrollPhysics(),
-                    children: [
-                      Center(child: MasterCard()),
-                      Center(child: Text('screen 2')),
-                      Center(child: Text('screen 3'))
-                    ]),
-              )
-            ],
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.only(top: size.height * 0.05),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(right: size.height * 0.12),
+                  child: BackButton(onPressed: () {}, color: blackcolor),
+                ),
+                Text('Add New Card',
+                    style: Theme.of(context).textTheme.headlineMedium),
+              ],
+            ),
           ),
-        ));
+          SizedBox(
+            height: size.height * 0.02,
+          ),
+          TabBar(
+              controller: _controller,
+              indicator: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.red.withOpacity(0.2),
+                  border: Border.all(color: Colors.orange)),
+              indicatorPadding: EdgeInsets.symmetric(horizontal: 10),
+              labelPadding: EdgeInsets.symmetric(vertical: 10),
+              tabs: [
+                Icon(
+                  FontAwesomeIcons.ccMastercard,
+                  color: Colors.orange,
+                ),
+                Icon(
+                  FontAwesomeIcons.paypal,
+                  color: Colors.blue,
+                ),
+                Icon(FontAwesomeIcons.buildingColumns, color: blackcolor)
+              ]),
+          Expanded(
+            child: TabBarView(
+                controller: _controller,
+                physics: NeverScrollableScrollPhysics(),
+                children: [
+                  Center(child: MasterCard()),
+                  Center(child: Text('screen 2')),
+                  Center(child: Text('screen 3'))
+                ]),
+          )
+        ],
+      ),
+    ));
   }
 }

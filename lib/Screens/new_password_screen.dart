@@ -19,19 +19,28 @@ class NewPasswordScreen extends StatelessWidget {
           onPressed: () {},
         ),
       ),
-      body: SafeArea(
-        child: Column(
-          children: [
-            GlobalLargeText(title: 'New Password'),
-            Spacer(),
-            GlobalInputfield(title: 'Password'),
-            GlobalInputfield(title: 'Confirm Password'),
-            Spacer(),
-            Text('Please write your new password',
-                style: Theme.of(context).textTheme.bodySmall),
-            SizedBox(height: size.height * 0.025),
-            GlobalButton(title: 'Reset Password'),
-          ],
+      body: GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                GlobalLargeText(title: 'New Password'),
+                // Spacer(),
+                SizedBox(height: size.height * 0.3),
+
+                GlobalInputfield(title: 'Password'),
+                GlobalInputfield(title: 'Confirm Password'),
+                // Spacer(),
+                SizedBox(height: size.height * 0.278),
+
+                Text('Please write your new password',
+                    style: Theme.of(context).textTheme.bodySmall),
+                SizedBox(height: size.height * 0.025),
+                GlobalButton(title: 'Reset Password'),
+              ],
+            ),
+          ),
         ),
       ),
     );
