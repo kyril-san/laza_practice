@@ -19,8 +19,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.sizeOf(context);
     return Scaffold(
-        drawer: Drawer(
-          child: DrawerTile(),
+        drawer: SafeArea(
+          child: Drawer(
+            child: DrawerTile(),
+          ),
         ),
         body: SafeArea(
           child: Padding(

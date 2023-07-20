@@ -1,9 +1,11 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_import
 
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:laza_practice/General-constants/const.dart';
+import 'package:laza_practice/Home_page_components/drawer_list_tiles.dart';
 
 class DrawerTile extends StatelessWidget {
   const DrawerTile({
@@ -23,7 +25,8 @@ class DrawerTile extends StatelessWidget {
             onTap: () {
               Scaffold.of(context).closeDrawer();
             },
-            child: Ink(
+            child: Container(
+                margin: EdgeInsets.only(left: size.width * 0.03),
                 height: size.height * 0.05,
                 decoration: BoxDecoration(
                     shape: BoxShape.circle, color: greycolor.withOpacity(0.13)),
@@ -40,7 +43,7 @@ class DrawerTile extends StatelessWidget {
           leading: CircleAvatar(child: Image.asset('images/profilepic.png')),
           title: Text(
             'Mrh Raju',
-            style: Theme.of(context).textTheme.bodyLarge,
+            style: Theme.of(context).textTheme.headlineMedium,
           ),
           subtitle: Row(
             children: [
@@ -69,6 +72,50 @@ class DrawerTile extends StatelessWidget {
             ),
           ),
         ),
+        SizedBox(height: size.height * 0.01),
+        DrawerListTiles(
+          title: 'DarkMode',
+          icon1: Icons.wb_sunny_outlined,
+          icon2: Icons.toggle_off_outlined,
+        ),
+        DrawerListTiles(
+          title: 'Account Information',
+          icon1: Icons.info_outline,
+        ),
+        DrawerListTiles(
+          title: 'Password',
+          icon1: Icons.lock_outline,
+        ),
+        DrawerListTiles(
+          title: 'order',
+          icon1: Icons.shopping_bag_outlined,
+        ),
+        DrawerListTiles(
+          title: 'My Cards',
+          icon1: Icons.wallet,
+        ),
+        DrawerListTiles(
+          title: 'Wishlist',
+          icon1: Icons.favorite_outline,
+        ),
+        DrawerListTiles(
+          title: 'settings',
+          icon1: Icons.settings_outlined,
+        ),
+        Spacer(),
+        ListTile(
+          horizontalTitleGap: 1,
+          leading: Icon(
+            Icons.logout_outlined,
+            color: redcolor,
+          ),
+          title: Text(
+            'Logout',
+            style: GoogleFonts.inter(
+                color: redcolor, fontSize: 15, fontWeight: FontWeight.w500),
+          ),
+        ),
+        Spacer()
       ],
     );
   }
