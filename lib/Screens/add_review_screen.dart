@@ -12,6 +12,7 @@ class AddReviewPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.sizeOf(context);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         leading: BackButton(onPressed: () {}, color: blackcolor),
         centerTitle: true,
@@ -21,34 +22,32 @@ class AddReviewPage extends StatelessWidget {
       body: GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
         child: SafeArea(
-            child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              LabelAndTextField(hintext: 'Type your name', title: 'Name'),
-              SizedBox(height: size.height * 0.02),
-              LabelAndTextField(
-                  title: 'How was your Experience?',
-                  hintext: 'Describe your experience',
-                  lines: 8),
-              SizedBox(height: size.height * 0.02),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: size.width * 0.04),
-                child: Text('Star',
-                    style: Theme.of(context).textTheme.headlineMedium),
-              ),
-              Slider(
-                  value: 2.5,
-                  onChanged: null,
-                  min: 0.0,
-                  max: 5.0,
-                  activeColor: primarycolor),
-              // Spacer(),
-              SizedBox(height: size.height * 0.27),
-              GlobalButton(title: 'Submit Review'),
-              // Spacer()
-            ],
-          ),
+            child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            LabelAndTextField(hintext: 'Type your name', title: 'Name'),
+            SizedBox(height: size.height * 0.02),
+            LabelAndTextField(
+                title: 'How was your Experience?',
+                hintext: 'Describe your experience',
+                lines: 8),
+            SizedBox(height: size.height * 0.02),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: size.width * 0.04),
+              child: Text('Star',
+                  style: Theme.of(context).textTheme.headlineMedium),
+            ),
+            Slider(
+                value: 2.5,
+                onChanged: null,
+                min: 0.0,
+                max: 5.0,
+                activeColor: primarycolor),
+            Spacer(),
+            // SizedBox(height: size.height * 0.27),
+            GlobalButton(title: 'Submit Review'),
+            // Spacer()
+          ],
         )),
       ),
     );

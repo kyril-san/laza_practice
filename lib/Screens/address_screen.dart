@@ -24,7 +24,6 @@ class AddressScreen extends StatelessWidget {
         child: GestureDetector(
           onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
           child: SingleChildScrollView(
-            clipBehavior: Clip.antiAlias,
             reverse: true,
             physics: BouncingScrollPhysics(),
             child: SizedBox(

@@ -9,6 +9,7 @@ class GlobalLargeText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(title, style: Theme.of(context).textTheme.displayLarge);
+    return Center(
+        child: Text(title, style: Theme.of(context).textTheme.displayLarge));
   }
 }

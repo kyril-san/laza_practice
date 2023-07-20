@@ -14,37 +14,41 @@ class VerificationCodeScreen extends StatelessWidget {
     Size size = MediaQuery.sizeOf(context);
 
     return Scaffold(
-      appBar: AppBar(
-        leading: BackButton(
-          color: blackcolor,
-          onPressed: () {},
-        ),
-      ),
+      resizeToAvoidBottomInset: true,
       body: SafeArea(
-          child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            GlobalLargeText(title: 'Verification Code'),
-            SizedBox(height: size.height * 0.025),
-            Image(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.only(top: size.height * 0.02),
+            child: BackButton(color: blackcolor, onPressed: () {}),
+          ),
+          GlobalLargeText(title: 'Verification Code'),
+          SizedBox(height: size.height * 0.025),
+          Center(
+            child: Image(
               image: AssetImage('images/Cloudlock.png'),
               fit: BoxFit.contain,
             ),
-            SizedBox(height: size.height * 0.03),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                OneValueInputField(),
-                OneValueInputField(),
-                OneValueInputField(),
-                OneValueInputField(),
-              ],
-            ),
-            // Spacer(),
-            SizedBox(height: size.height * 0.35),
+          ),
+          SizedBox(height: size.height * 0.03),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              OneValueInputField(),
+              OneValueInputField(),
+              OneValueInputField(),
+              OneValueInputField(),
+            ],
+          ),
+          Spacer(
+            flex: 4,
+          ),
+          // SizedBox(height: size.height * 0.3),
 
-            RichText(
+          Center(
+            child: RichText(
               textAlign: TextAlign.center,
               text: TextSpan(children: [
                 TextSpan(
@@ -55,10 +59,11 @@ class VerificationCodeScreen extends StatelessWidget {
                     style: Theme.of(context).textTheme.titleSmall)
               ]),
             ),
-            SizedBox(height: size.height * 0.025),
-            GlobalButton(title: 'Confirm Email')
-          ],
-        ),
+          ),
+          // SizedBox(height: size.height * 0.025),
+          Spacer(),
+          GlobalButton(title: 'Confirm Email')
+        ],
       )),
     );
   }

@@ -11,14 +11,16 @@ class OneValueInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.sizeOf(context);
     return SizedBox(
-      width: size.width * 0.21,
+      width: size.width * 0.2,
       child: TextFormField(
+        textAlign: TextAlign.center,
         showCursor: false,
         style: Theme.of(context).textTheme.displayMedium,
         inputFormatters: [LengthLimitingTextInputFormatter(1)],
         decoration: InputDecoration(
+            contentPadding: EdgeInsets.symmetric(vertical: size.height * 0.04),
             enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: greycolor.withOpacity(0.4)),
+              borderSide: BorderSide(color: greycolor.withOpacity(0.3)),
             ),
             focusedBorder:
                 OutlineInputBorder(borderSide: BorderSide(color: greycolor))),

@@ -15,6 +15,7 @@ class PaymentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.sizeOf(context);
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         leading: BackButton(onPressed: () {}, color: blackcolor),
         centerTitle: true,
@@ -25,7 +26,7 @@ class PaymentScreen extends StatelessWidget {
         child: GestureDetector(
           onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
           child: SingleChildScrollView(
-            reverse: true,
+            // reverse: true,
             physics: BouncingScrollPhysics(),
             child: Column(
               children: [

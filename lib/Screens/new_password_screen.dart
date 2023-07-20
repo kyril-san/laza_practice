@@ -13,6 +13,7 @@ class NewPasswordScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.sizeOf(context);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         leading: BackButton(
           color: blackcolor,
@@ -22,24 +23,23 @@ class NewPasswordScreen extends StatelessWidget {
       body: GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
         child: SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                GlobalLargeText(title: 'New Password'),
-                // Spacer(),
-                SizedBox(height: size.height * 0.3),
+          child: Column(
+            children: [
+              GlobalLargeText(title: 'New Password'),
+              Spacer(),
+              // SizedBox(height: size.height * 0.3),
 
-                GlobalInputfield(title: 'Password'),
-                GlobalInputfield(title: 'Confirm Password'),
-                // Spacer(),
-                SizedBox(height: size.height * 0.278),
+              GlobalInputfield(title: 'Password'),
+              GlobalInputfield(title: 'Confirm Password'),
+              Spacer(),
+              // SizedBox(height: size.height * 0.278),
 
-                Text('Please write your new password',
-                    style: Theme.of(context).textTheme.bodySmall),
-                SizedBox(height: size.height * 0.025),
-                GlobalButton(title: 'Reset Password'),
-              ],
-            ),
+              Text('Please write your new password',
+                  style: Theme.of(context).textTheme.bodySmall),
+              SizedBox(height: size.height * 0.025),
+              // Spacer(),
+              GlobalButton(title: 'Reset Password'),
+            ],
           ),
         ),
       ),

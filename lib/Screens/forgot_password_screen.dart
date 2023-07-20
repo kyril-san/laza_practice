@@ -14,6 +14,7 @@ class ForgotPasswordScreen extends StatelessWidget {
     Size size = MediaQuery.sizeOf(context);
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         leading: BackButton(
           color: blackcolor,
@@ -23,30 +24,29 @@ class ForgotPasswordScreen extends StatelessWidget {
       body: GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
         child: SafeArea(
-            child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              GlobalLargeText(title: 'Forgot Password'),
-              SizedBox(height: size.height * 0.025),
-              Image(
-                image: AssetImage('images/Cloudlock.png'),
-                fit: BoxFit.contain,
-              ),
-              SizedBox(height: size.height * 0.03),
-              GlobalInputfield(title: 'Email Address'),
-              // Spacer(),
-              SizedBox(height: size.height * 0.325),
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            GlobalLargeText(title: 'Forgot Password'),
+            SizedBox(height: size.height * 0.025),
+            Image(
+              image: AssetImage('images/Cloudlock.png'),
+              fit: BoxFit.contain,
+            ),
+            SizedBox(height: size.height * 0.03),
+            GlobalInputfield(title: 'Email Address'),
+            Spacer(),
+            // SizedBox(height: size.height * 0.325),
 
-              Text(
-                'Please write your email to receive a \nconfirmation code to set a new password',
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodySmall,
-              ),
-              SizedBox(height: size.height * 0.025),
-              GlobalButton(title: 'Confirm Email')
-            ],
-          ),
+            Text(
+              'Please write your email to receive a \nconfirmation code to set a new password',
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
+            // Spacer(),
+            SizedBox(height: size.height * 0.025),
+            GlobalButton(title: 'Confirm Email')
+          ],
         )),
       ),
     );
