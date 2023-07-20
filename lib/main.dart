@@ -10,6 +10,8 @@ import 'package:laza_practice/Screens/address_screen.dart';
 import 'package:laza_practice/Screens/cart_screen.dart';
 import 'package:laza_practice/Screens/forgot_password_screen.dart';
 import 'package:laza_practice/Screens/get_started_screen.dart';
+import 'package:laza_practice/Screens/home_page.dart';
+import 'package:laza_practice/Screens/nike_store.dart';
 import 'package:laza_practice/Screens/intro_screen.dart';
 import 'package:laza_practice/Screens/new_password_screen.dart';
 import 'package:laza_practice/Screens/order_confirmed_screen.dart';
@@ -41,7 +43,7 @@ class MyApp extends StatelessWidget {
         textTheme: inter,
         scaffoldBackgroundColor: const Color.fromARGB(255, 254, 254, 254),
       ),
-      home: const AddNewCardScreen(),
+      home: const HomePage(),
     );
   }
 }
