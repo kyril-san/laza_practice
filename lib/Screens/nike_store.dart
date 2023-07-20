@@ -22,7 +22,7 @@ class NikeStorePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   BackButton(),
-                  Image.asset('images/Nike.png'),
+                  Image.asset('images/Nikelogo.png', scale: 0.5),
                   Image.asset('images/Bag.png')
                 ],
               ),

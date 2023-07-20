@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:laza_practice/Get-Started-components/social_media.dart';
 import 'package:laza_practice/General-constants/const.dart';
@@ -8,8 +10,32 @@ import 'package:laza_practice/General-constants/global_large_text.dart';
 
 import '../General-constants/global_button.dart';
 
-class LetsGetStartedPage extends StatelessWidget {
+class LetsGetStartedPage extends StatefulWidget {
   const LetsGetStartedPage({super.key});
+
+  @override
+  State<LetsGetStartedPage> createState() => _LetsGetStartedPageState();
+}
+
+late TapGestureRecognizer _tapgesture;
+
+class _LetsGetStartedPageState extends State<LetsGetStartedPage> {
+  @override
+  void dispose() {
+    super.dispose();
+    _tapgesture.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _tapgesture = TapGestureRecognizer()..onTap = () => _navigate();
+  }
+
+  void _navigate() {
+    Navigator.pushReplacementNamed(context, 'signin');
+    HapticFeedback.vibrate();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +44,9 @@ class LetsGetStartedPage extends StatelessWidget {
       appBar: AppBar(
           leading: BackButton(
         color: blackcolor,
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pop(context);
+        },
       )),
       body: SafeArea(
           child: Column(
@@ -49,11 +77,20 @@ class LetsGetStartedPage extends StatelessWidget {
                   text: 'Already have an Account,',
                   style: Theme.of(context).textTheme.titleSmall),
               TextSpan(
-                  text: 'Sign In', style: Theme.of(context).textTheme.bodyLarge)
+                  text: 'Sign In',
+                  style: Theme.of(context).textTheme.bodyLarge,
+                  recognizer: _tapgesture)
             ]),
           ),
           SizedBox(height: size.height * 0.025),
-          GlobalButton(title: 'Create an Account')
+          GlobalButton(
+            title: 'Create an Account',
+            ontap: () {
+              setState(() {
+                Navigator.pushReplacementNamed(context, 'create');
+              });
+            },
+          )
         ],
       )),
     );

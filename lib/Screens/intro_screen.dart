@@ -4,9 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:laza_practice/General-constants/const.dart';
 import 'package:laza_practice/Introscreen_components/men_women_button.dart';
 
-class IntroPage extends StatelessWidget {
+class IntroPage extends StatefulWidget {
   const IntroPage({super.key});
 
+  @override
+  State<IntroPage> createState() => _IntroPageState();
+}
+
+class _IntroPageState extends State<IntroPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.sizeOf(context);
@@ -43,14 +48,16 @@ class IntroPage extends StatelessWidget {
                 SizedBox(height: size.height * 0.02),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: const [
+                  children: [
                     MenandWomenButton(title: 'men', isclicked: false),
                     MenandWomenButton(title: 'Women', isclicked: true)
                   ],
                 ),
                 SizedBox(height: size.height * 0.02),
                 TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, 'LGS');
+                    },
                     child: Text('Skip',
                         style: Theme.of(context).textTheme.titleLarge))
               ],

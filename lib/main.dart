@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import
+// ignore_for_file: unused_import, prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:laza_practice/General-constants/const.dart';
@@ -34,6 +34,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      initialRoute: 'LGS',
+      routes: {
+        '/': (context) => SplashScreenPage(),
+        '/intro': (context) => IntroPage(),
+        'LGS': (context) => LetsGetStartedPage(),
+        'create': (context) => SignUpPage(),
+        'signin': (context) => WelcomeScreen(),
+      },
       title: 'Laza-Project',
       theme: ThemeData(
         appBarTheme: AppBarTheme(
@@ -43,7 +51,7 @@ class MyApp extends StatelessWidget {
         textTheme: inter,
         scaffoldBackgroundColor: const Color.fromARGB(255, 254, 254, 254),
       ),
-      home: const HomePage(),
+      // home: const HomePage(),
     );
   }
 }

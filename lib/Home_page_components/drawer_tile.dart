@@ -87,7 +87,7 @@ class DrawerTile extends StatelessWidget {
           icon1: Icons.lock_outline,
         ),
         DrawerListTiles(
-          title: 'order',
+          title: 'Order',
           icon1: Icons.shopping_bag_outlined,
         ),
         DrawerListTiles(
@@ -99,7 +99,7 @@ class DrawerTile extends StatelessWidget {
           icon1: Icons.favorite_outline,
         ),
         DrawerListTiles(
-          title: 'settings',
+          title: 'Settings',
           icon1: Icons.settings_outlined,
         ),
         Spacer(),

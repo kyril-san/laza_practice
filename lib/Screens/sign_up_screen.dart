@@ -8,9 +8,14 @@ import 'package:laza_practice/General-constants/global_button.dart';
 import 'package:laza_practice/General-constants/global_input_field.dart';
 import 'package:laza_practice/General-constants/global_large_text.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
 
+  @override
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.sizeOf(context);
@@ -27,7 +32,13 @@ class SignUpPage extends StatelessWidget {
                 children: [
                   Padding(
                     padding: EdgeInsets.only(top: size.height * 0.02),
-                    child: BackButton(color: blackcolor, onPressed: () {}),
+                    child: BackButton(
+                        color: blackcolor,
+                        onPressed: () {
+                          setState(() {
+                            Navigator.pop(context);
+                          });
+                        }),
                   ),
                   GlobalLargeText(title: 'Sign Up'),
                   // Spacer(),
