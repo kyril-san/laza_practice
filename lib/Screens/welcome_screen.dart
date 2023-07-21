@@ -143,20 +143,19 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         LoginModelclass data = LoginModelclass(
                             username: username.text.trim(),
                             password: password.text.trim());
-                        var res = await Loginclass.loginapi(data);
-                        if (res != null) {
-                          // debugPrint(res);
-                          setState(() {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => HomePage(
-                                          title: 'test',
-                                        )));
-                            username.clear();
-                            password.clear();
-                          });
-                        } else {}
+                        await Loginclass.loginapi(data).then((value) {
+                          if (value.token != '') {
+                            setState(() {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          HomePage(title: value)));
+                              username.clear();
+                              password.clear();
+                            });
+                          } else {}
+                        });
                       }
                     },
                   )

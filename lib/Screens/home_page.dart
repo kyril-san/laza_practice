@@ -2,14 +2,17 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:laza_practice/ApisandUserdata/UserData/login_model_class.dart';
 import 'package:laza_practice/General-constants/const.dart';
 import 'package:laza_practice/Home_page_components/brand_name.dart';
 import 'package:laza_practice/Home_page_components/drawer_tile.dart';
 import 'package:laza_practice/Home_page_components/item_list.dart';
 import 'package:laza_practice/Screens/nike_store.dart';
 
+import '../ApisandUserdata/UserData/Login_response_model.dart';
+
 class HomePage extends StatefulWidget {
-  final String title;
+  final LoginResponseModel title;
   const HomePage({super.key, required this.title});
 
   @override
@@ -32,7 +35,8 @@ class _HomePageState extends State<HomePage> {
           child: Drawer(
             elevation: 0,
             child: DrawerTile(
-              title: widget.title,
+              title: widget.title.name,
+              src: widget.title.image,
             ),
           ),
         ),

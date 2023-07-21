@@ -9,9 +9,12 @@ import 'package:laza_practice/Home_page_components/drawer_list_tiles.dart';
 
 class DrawerTile extends StatelessWidget {
   final String title;
+  final String src;
+
   const DrawerTile({
     super.key,
     required this.title,
+    required this.src,
   });
 
   @override
@@ -42,7 +45,7 @@ class DrawerTile extends StatelessWidget {
           ),
         ),
         ListTile(
-          leading: CircleAvatar(child: Image.asset('images/profilepic.png')),
+          leading: CircleAvatar(child: Image.network(src)),
           title: Text(
             title,
             style: Theme.of(context).textTheme.headlineMedium,
