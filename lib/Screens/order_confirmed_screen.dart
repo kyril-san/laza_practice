@@ -40,7 +40,10 @@ class OrderConfirmedScreen extends StatelessWidget {
               Spacer(),
               GotoOrdersButton(),
               SizedBox(height: size.height * 0.04),
-              GlobalButton(title: 'Continue shopping')
+              GlobalButton(
+                title: 'Continue shopping',
+                ontap: () {},
+              )
             ],
           ),
         ),

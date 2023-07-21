@@ -29,7 +29,10 @@ class MasterCard extends StatelessWidget {
         ),
         Spacer(),
         // SizedBox(height: size.height * 0.357),
-        GlobalButton(title: 'Add Card')
+        GlobalButton(
+          title: 'Add Card',
+          ontap: () {},
+        )
       ],
     );
   }

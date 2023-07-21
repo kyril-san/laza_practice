@@ -105,7 +105,10 @@ class TitleandPrice extends StatelessWidget {
                 ),
               ),
               Reviews(),
-              GlobalButton(title: 'Add to Cart'),
+              GlobalButton(
+                title: 'Add to Cart',
+                ontap: () {},
+              ),
               SizedBox(height: size.height * 0.01),
             ],
           ),

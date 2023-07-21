@@ -34,23 +34,28 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: 'LGS',
+      initialRoute: 'signin',
       routes: {
         '/': (context) => SplashScreenPage(),
         '/intro': (context) => IntroPage(),
         'LGS': (context) => LetsGetStartedPage(),
         'create': (context) => SignUpPage(),
         'signin': (context) => WelcomeScreen(),
+        // '/home': (context) => HomePage(),
+        '/review': (context) => ReviewScreen(),
+        '/nike': (context) => NikeStorePage(),
+        'FP': (context) => ForgotPasswordScreen(),
+        'OC': (context) => OrderConfirmedScreen(),
       },
       title: 'Laza-Project',
       theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          backgroundColor: whitecolor,
-          elevation: 0,
-        ),
-        textTheme: inter,
-        scaffoldBackgroundColor: const Color.fromARGB(255, 254, 254, 254),
-      ),
+          appBarTheme: AppBarTheme(
+            backgroundColor: whitecolor,
+            elevation: 0,
+          ),
+          textTheme: inter,
+          scaffoldBackgroundColor: const Color.fromARGB(255, 254, 254, 254),
+          visualDensity: VisualDensity.adaptivePlatformDensity),
       // home: const HomePage(),
     );
   }

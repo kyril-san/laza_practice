@@ -6,9 +6,16 @@ import 'package:laza_practice/General-constants/global_button.dart';
 import 'package:laza_practice/General-constants/global_input_field.dart';
 import 'package:laza_practice/General-constants/global_large_text.dart';
 
-class ForgotPasswordScreen extends StatelessWidget {
+class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});
 
+  @override
+  State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
+}
+
+TextEditingController email = TextEditingController();
+
+class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.sizeOf(context);
@@ -18,7 +25,7 @@ class ForgotPasswordScreen extends StatelessWidget {
       appBar: AppBar(
         leading: BackButton(
           color: blackcolor,
-          onPressed: () {},
+          onPressed: () => Navigator.pop(context),
         ),
       ),
       body: GestureDetector(
@@ -34,7 +41,10 @@ class ForgotPasswordScreen extends StatelessWidget {
               fit: BoxFit.contain,
             ),
             SizedBox(height: size.height * 0.03),
-            GlobalInputfield(title: 'Email Address'),
+            GlobalInputfield(
+              title: 'Email Address',
+              controller: email,
+            ),
             Spacer(),
             // SizedBox(height: size.height * 0.325),
 
@@ -45,7 +55,10 @@ class ForgotPasswordScreen extends StatelessWidget {
             ),
             // Spacer(),
             SizedBox(height: size.height * 0.025),
-            GlobalButton(title: 'Confirm Email')
+            GlobalButton(
+              title: 'Confirm Email',
+              ontap: () {},
+            )
           ],
         )),
       ),

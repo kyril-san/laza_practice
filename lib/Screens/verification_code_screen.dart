@@ -62,7 +62,10 @@ class VerificationCodeScreen extends StatelessWidget {
           ),
           // SizedBox(height: size.height * 0.025),
           Spacer(),
-          GlobalButton(title: 'Confirm Email')
+          GlobalButton(
+            title: 'Confirm Email',
+            ontap: () {},
+          )
         ],
       )),
     );

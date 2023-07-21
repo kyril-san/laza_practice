@@ -72,7 +72,10 @@ class PaymentScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomSheet: GlobalButton(title: 'Save Card'),
+      bottomSheet: GlobalButton(
+        title: 'Save Card',
+        ontap: () {},
+      ),
     );
   }
 }

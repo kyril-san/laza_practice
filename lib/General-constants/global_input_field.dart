@@ -4,9 +4,11 @@ import 'package:laza_practice/General-constants/const.dart';
 
 class GlobalInputfield extends StatelessWidget {
   final String title;
+  final TextEditingController controller;
   const GlobalInputfield({
     super.key,
     required this.title,
+    required this.controller,
   });
 
   @override
@@ -16,6 +18,16 @@ class GlobalInputfield extends StatelessWidget {
       padding: EdgeInsets.symmetric(
           horizontal: size.width * 0.03, vertical: size.height * 0.01),
       child: TextFormField(
+        onFieldSubmitted: (newValue) {
+          debugPrint(newValue);
+        },
+        controller: controller,
+        validator: (value) {
+          if (value!.isEmpty) {
+            return 'Please put in a value';
+          }
+          return null;
+        },
         style: Theme.of(context).textTheme.bodyLarge,
         cursorColor: Colors.grey,
         decoration: InputDecoration(

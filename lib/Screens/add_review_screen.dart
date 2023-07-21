@@ -45,7 +45,10 @@ class AddReviewPage extends StatelessWidget {
                 activeColor: primarycolor),
             Spacer(),
             // SizedBox(height: size.height * 0.27),
-            GlobalButton(title: 'Submit Review'),
+            GlobalButton(
+              title: 'Submit Review',
+              ontap: () {},
+            ),
             // Spacer()
           ],
         )),

@@ -9,7 +9,8 @@ import 'package:laza_practice/Home_page_components/item_list.dart';
 import 'package:laza_practice/Screens/nike_store.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final String title;
+  const HomePage({super.key, required this.title});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -29,7 +30,10 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
         drawer: SafeArea(
           child: Drawer(
-            child: DrawerTile(),
+            elevation: 0,
+            child: DrawerTile(
+              title: widget.title,
+            ),
           ),
         ),
         body: pages[_currentindex],

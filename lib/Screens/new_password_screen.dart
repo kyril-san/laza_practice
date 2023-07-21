@@ -6,9 +6,17 @@ import 'package:laza_practice/General-constants/global_button.dart';
 import 'package:laza_practice/General-constants/global_input_field.dart';
 import 'package:laza_practice/General-constants/global_large_text.dart';
 
-class NewPasswordScreen extends StatelessWidget {
+class NewPasswordScreen extends StatefulWidget {
   const NewPasswordScreen({super.key});
 
+  @override
+  State<NewPasswordScreen> createState() => _NewPasswordScreenState();
+}
+
+TextEditingController password = TextEditingController();
+TextEditingController password2 = TextEditingController();
+
+class _NewPasswordScreenState extends State<NewPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.sizeOf(context);
@@ -29,8 +37,14 @@ class NewPasswordScreen extends StatelessWidget {
               Spacer(),
               // SizedBox(height: size.height * 0.3),
 
-              GlobalInputfield(title: 'Password'),
-              GlobalInputfield(title: 'Confirm Password'),
+              GlobalInputfield(
+                title: 'Password',
+                controller: password,
+              ),
+              GlobalInputfield(
+                title: 'Confirm Password',
+                controller: password2,
+              ),
               Spacer(),
               // SizedBox(height: size.height * 0.278),
 
@@ -38,7 +52,10 @@ class NewPasswordScreen extends StatelessWidget {
                   style: Theme.of(context).textTheme.bodySmall),
               SizedBox(height: size.height * 0.025),
               // Spacer(),
-              GlobalButton(title: 'Reset Password'),
+              GlobalButton(
+                title: 'Reset Password',
+                ontap: () {},
+              ),
             ],
           ),
         ),

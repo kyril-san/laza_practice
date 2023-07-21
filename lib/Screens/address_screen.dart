@@ -58,7 +58,10 @@ class AddressScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomSheet: GlobalButton(title: 'Save Address'),
+      bottomSheet: GlobalButton(
+        title: 'Save Address',
+        ontap: () {},
+      ),
     );
   }
 }

@@ -3,11 +3,11 @@ import 'package:laza_practice/General-constants/const.dart';
 
 class GlobalButton extends StatelessWidget {
   final String title;
-  final Function? ontap;
+  final Function ontap;
   const GlobalButton({
     super.key,
     required this.title,
-    this.ontap,
+    required this.ontap,
   });
 
   @override
@@ -15,7 +15,7 @@ class GlobalButton extends StatelessWidget {
     Size size = MediaQuery.sizeOf(context);
     return Material(
       child: InkWell(
-        onTap: () => ontap!(),
+        onTap: () => ontap(),
         child: Container(
             width: double.infinity,
             height: size.height * 0.08,
