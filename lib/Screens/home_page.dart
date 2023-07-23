@@ -29,14 +29,20 @@ const pages = [
 
 class _HomePageState extends State<HomePage> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         drawer: SafeArea(
           child: Drawer(
             elevation: 0,
             child: DrawerTile(
-              title: widget.title.name,
-              src: widget.title.image,
+              title: widget.title.name ?? 'Mr Mrh',
+              src: widget.title.image ??
+                  "https://secure.gravatar.com/avatar/cbd701360661a18a5c78940acee7994c?s=560&d=https:%2F%2Fnews.microsoft.com%2Fwp-content%2Fthemes%2Fmicrosoft-news-center-2016%2Fassets%2Fimg%2Fdefault-avatar.png&r=g",
             ),
           ),
         ),

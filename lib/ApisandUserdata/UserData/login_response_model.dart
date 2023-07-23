@@ -1,13 +1,15 @@
 class LoginResponseModel {
-  int id;
-  String name;
-  String image;
-  String token;
+  String? id;
+  String? name;
+  String? image;
+  String? message;
+  String? token;
 
   LoginResponseModel(
       {required this.id,
       required this.image,
       required this.name,
+      required this.message,
       required this.token});
 
   factory LoginResponseModel.fromJson(Map<String, dynamic> json) {
@@ -15,6 +17,7 @@ class LoginResponseModel {
         id: json['id'],
         name: json['firstName'],
         image: json['image'],
+        message: json['message'],
         token: json['token']);
   }
 }

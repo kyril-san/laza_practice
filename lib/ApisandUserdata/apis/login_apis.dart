@@ -10,7 +10,7 @@ import 'package:http/http.dart' as http;
 
 class Loginclass {
   static Future<LoginResponseModel> loginapi(LoginModelclass data) async {
-    final url = Uri.https(ConstUrl.basedummyjson, '/auth/login');
+    final url = Uri.https(ConstUrl.baseSignupUrl, '/login');
     final headers = ({"Content-Type": "application/json"});
     final body = data.tojson();
 
@@ -21,6 +21,8 @@ class Loginclass {
         // final List<LoginResponseModel> list = (body as List<dynamic>)
         //     .map((e) => LoginResponseModel.fromJson(e))
         //     .toList();
+        return LoginResponseModel.fromJson(jsonDecode(res.body));
+      } else if (res.statusCode == 500) {
         return LoginResponseModel.fromJson(jsonDecode(res.body));
       } else {
         debugPrint('${res.statusCode} :  ${res.reasonPhrase}');

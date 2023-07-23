@@ -1,11 +1,11 @@
 class LoginModelclass {
-  String username;
+  String email;
   String password;
 
-  LoginModelclass({required this.username, required this.password});
+  LoginModelclass({required this.email, required this.password});
 
   Map<String, dynamic> tojson() {
-    Map<String, dynamic> map = {'username': username, 'password': password};
+    Map<String, dynamic> map = {'email': email, 'password': password};
     return map;
   }
 }

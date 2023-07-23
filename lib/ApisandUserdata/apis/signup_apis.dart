@@ -6,10 +6,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:laza_practice/ApisandUserdata/UserData/signup_model_class.dart';
+import 'package:laza_practice/ApisandUserdata/UserData/signup_response_model.dart';
 import 'package:laza_practice/ApisandUserdata/const_url.dart';
 
 class SignUp {
-  static Future<dynamic> signupapi(SignupModelClass data) async {
+  static Future<SignupResponseModel> signupapi(SignupModelClass data) async {
     final url = Uri.https(ConstUrl.baseSignupUrl, "/register");
     final headers = ({"Content-Type": "application/json"});
     final body = data.toJson();
@@ -18,12 +19,15 @@ class SignUp {
       final res =
           await http.post(url, headers: headers, body: jsonEncode(body));
       if (res.statusCode == 200) {
-        return jsonDecode(res.body);
+        return SignupResponseModel.fromJson(jsonDecode(res.body));
+      } else if (res.statusCode == 500) {
+        return SignupResponseModel.fromJson(jsonDecode(res.body));
       } else {
         debugPrint('${res.statusCode}:${res.reasonPhrase}');
       }
     } catch (e) {
       print(e.toString());
     }
+    throw Exception('Unable to connect to Server');
   }
 }

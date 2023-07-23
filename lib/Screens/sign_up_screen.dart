@@ -22,8 +22,6 @@ TextEditingController password = TextEditingController();
 TextEditingController email = TextEditingController();
 TextEditingController phone = TextEditingController();
 
-late SignupModelClass data;
-
 class _SignUpPageState extends State<SignUpPage> {
   @override
   void dispose() {
@@ -103,8 +101,9 @@ class _SignUpPageState extends State<SignUpPage> {
                           );
 
                           final response = await SignUp.signupapi(data);
-                          if (response != null) {
-                            // debugPrint(response);
+                          if (response.message ==
+                              'User Registered Successfully ') {
+                            debugPrint('data: ${response.data}');
                             setState(() {
                               email.clear();
                               password.clear();
@@ -112,11 +111,28 @@ class _SignUpPageState extends State<SignUpPage> {
                               phone.clear();
                               Navigator.pushNamed(context, 'LGS');
                             });
+                          } else if (response.error ==
+                              'User Already Existss ') {
+                            setState(() {
+                              showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                        title: Text('Error'),
+                                        content: Text(
+                                            '${response.error!} \nRouting you to the Login screen in 3 sec'),
+                                      ));
+                            });
+                            Future.delayed(Duration(seconds: 3), () {
+                              Navigator.pushReplacementNamed(context, 'signin');
+                            });
                           } else {
-                            // setState(() {
-                            // showDialog(context: context, builder: (context) => showDialog());
-
-                            // });
+                            setState(() {
+                              showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                        title: Text('error'),
+                                      ));
+                            });
                           }
                         }
                       },

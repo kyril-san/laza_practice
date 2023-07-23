@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -18,7 +18,7 @@ class WelcomeScreen extends StatefulWidget {
   State<WelcomeScreen> createState() => _WelcomeScreenState();
 }
 
-TextEditingController username = TextEditingController();
+TextEditingController email = TextEditingController();
 TextEditingController password = TextEditingController();
 bool _isclicked = false;
 
@@ -26,7 +26,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   void dispose() {
     super.dispose();
-    username.dispose();
+    email.dispose();
     password.dispose();
   }
 
@@ -59,7 +59,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
                   GlobalInputfield(
                     title: 'Username',
-                    controller: username,
+                    controller: email,
                   ),
                   GlobalInputfield(
                     title: 'Password',
@@ -141,21 +141,41 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       if (_formkey.currentState!.validate()) {
                         debugPrint('success,');
                         LoginModelclass data = LoginModelclass(
-                            username: username.text.trim(),
+                            email: email.text.trim(),
                             password: password.text.trim());
-                        await Loginclass.loginapi(data).then((value) {
-                          if (value.token != '') {
-                            setState(() {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          HomePage(title: value)));
-                              username.clear();
-                              password.clear();
-                            });
-                          } else {}
-                        });
+
+                        final res = await Loginclass.loginapi(data);
+                        if (res.message == 'Sucessfully Logged in') {
+                          debugPrint('data: ${res.token}');
+                          setState(() {
+                            password.clear();
+                            email.clear();
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        HomePage(title: res)));
+                          });
+                        } else if (res.message == 'Incorret Login Details') {
+                          // debugPrint('data: ${res.token}');
+                          setState(() {
+                            password.clear();
+                            email.clear();
+                            showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                      title: Text('Error'),
+                                      content: Text(res.message!),
+                                      actions: [
+                                        TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text('Okay'))
+                                      ],
+                                    ));
+                          });
+                        }
                       }
                     },
                   )
