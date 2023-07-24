@@ -7,6 +7,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:laza_practice/Get-Started-components/social_media.dart';
 import 'package:laza_practice/General-constants/const.dart';
 import 'package:laza_practice/General-constants/global_large_text.dart';
+import 'package:laza_practice/Screens/sign_up_screen.dart';
+import 'package:laza_practice/Screens/welcome_screen.dart';
 
 import '../General-constants/global_button.dart';
 
@@ -33,7 +35,8 @@ class _LetsGetStartedPageState extends State<LetsGetStartedPage> {
   }
 
   void _navigate() {
-    Navigator.pushReplacementNamed(context, 'signin');
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (_) => WelcomeScreen()));
     HapticFeedback.vibrate();
   }
 
@@ -87,7 +90,8 @@ class _LetsGetStartedPageState extends State<LetsGetStartedPage> {
             title: 'Create an Account',
             ontap: () {
               setState(() {
-                Navigator.pushReplacementNamed(context, 'create');
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => SignUpPage()));
               });
             },
           )

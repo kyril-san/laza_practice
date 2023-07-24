@@ -21,44 +21,42 @@ import 'package:laza_practice/Screens/sign_up_screen.dart';
 import 'package:laza_practice/Screens/splash_screen.dart';
 import 'package:laza_practice/Screens/verification_code_screen.dart';
 import 'package:laza_practice/Screens/welcome_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+Future<void> main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // initialRoute: 'signin',
-      // routes: {
-      //   '/': (context) => SplashScreenPage(),
-      //   '/intro': (context) => IntroPage(),
-      //   'LGS': (context) => LetsGetStartedPage(),
-      //   'create': (context) => SignUpPage(),
-      //   'signin': (context) => WelcomeScreen(),
-      //   // '/home': (context) => HomePage(),
-      //   '/review': (context) => ReviewScreen(),
-      //   '/nike': (context) => NikeStorePage(),
-      //   'FP': (context) => ForgotPasswordScreen(),
-      //   'OC': (context) => OrderConfirmedScreen(),
-      // },
       title: 'Laza-Project',
       theme: ThemeData(
           appBarTheme: AppBarTheme(
             backgroundColor: whitecolor,
             elevation: 0,
           ),
+          brightness: Brightness.light,
           textTheme: inter,
           scaffoldBackgroundColor: const Color.fromARGB(255, 254, 254, 254),
-          visualDensity: VisualDensity.adaptivePlatformDensity),
-      home: HomePage(
-          // title: null,
-          ),
+          useMaterial3: true,
+          visualDensity: VisualDensity.standard),
+      home: SplashScreenPage(),
     );
   }
 }

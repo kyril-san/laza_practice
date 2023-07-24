@@ -36,7 +36,13 @@ class _AddNewCardScreenState extends State<AddNewCardScreen>
                   children: [
                     Padding(
                       padding: EdgeInsets.only(right: size.height * 0.12),
-                      child: BackButton(onPressed: () {}, color: blackcolor),
+                      child: BackButton(
+                          onPressed: () {
+                            setState(() {
+                              Navigator.pop(context);
+                            });
+                          },
+                          color: blackcolor),
                     ),
                     Text('Add New Card',
                         style: Theme.of(context).textTheme.headlineMedium),

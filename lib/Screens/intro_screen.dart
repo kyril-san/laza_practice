@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:laza_practice/General-constants/const.dart';
 import 'package:laza_practice/Introscreen_components/men_women_button.dart';
+import 'package:laza_practice/Screens/get_started_screen.dart';
 
 class IntroPage extends StatefulWidget {
   const IntroPage({super.key});
@@ -56,7 +57,10 @@ class _IntroPageState extends State<IntroPage> {
                 SizedBox(height: size.height * 0.02),
                 TextButton(
                     onPressed: () {
-                      Navigator.pushReplacementNamed(context, 'LGS');
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => LetsGetStartedPage()));
                     },
                     child: Text('Skip',
                         style: Theme.of(context).textTheme.titleLarge))

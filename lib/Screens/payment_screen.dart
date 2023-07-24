@@ -8,16 +8,27 @@ import 'package:laza_practice/General-constants/global_label_and_text.dart';
 import 'package:laza_practice/Payment-Components/add_new_card.dart';
 import 'package:laza_practice/Payment-Components/card_details.dart';
 
-class PaymentScreen extends StatelessWidget {
+class PaymentScreen extends StatefulWidget {
   const PaymentScreen({super.key});
 
+  @override
+  State<PaymentScreen> createState() => _PaymentScreenState();
+}
+
+class _PaymentScreenState extends State<PaymentScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.sizeOf(context);
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        leading: BackButton(onPressed: () {}, color: blackcolor),
+        leading: BackButton(
+            onPressed: () {
+              setState(() {
+                Navigator.pop(context);
+              });
+            },
+            color: blackcolor),
         centerTitle: true,
         title:
             Text('Payment', style: Theme.of(context).textTheme.headlineMedium),

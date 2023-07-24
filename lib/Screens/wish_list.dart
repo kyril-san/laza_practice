@@ -5,17 +5,18 @@ import 'package:laza_practice/ApisandUserdata/UserData/products_model.dart';
 import 'package:laza_practice/ApisandUserdata/apis/productsapi.dart';
 import 'package:laza_practice/General-constants/const.dart';
 import 'package:laza_practice/Home_page_components/item_list.dart';
-import 'package:laza_practice/Screens/cart_screen.dart';
+import 'package:laza_practice/Screens/home_page.dart';
+import 'package:laza_practice/Screens/main_page.dart';
 import 'package:laza_practice/Screens/order_confirmed_screen.dart';
 
-class NikeStorePage extends StatefulWidget {
-  const NikeStorePage({super.key});
+class WishListPage extends StatefulWidget {
+  const WishListPage({super.key});
 
   @override
-  State<NikeStorePage> createState() => _NikeStorePageState();
+  State<WishListPage> createState() => _WishListPage();
 }
 
-class _NikeStorePageState extends State<NikeStorePage> {
+class _WishListPage extends State<WishListPage> {
   late Future<List<ProductsModelclass>> products;
   @override
   void initState() {
@@ -37,13 +38,12 @@ class _NikeStorePageState extends State<NikeStorePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   BackButton(
-                    onPressed: () {
-                      setState(() {
-                        Navigator.pop(context);
-                      });
-                    },
+                      onPressed: () => Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (_) => MainPage()))),
+                  Text(
+                    'Wishlist',
+                    style: Theme.of(context).textTheme.headlineMedium,
                   ),
-                  Image.asset('images/Nikelogo.png', scale: 0.5),
                   Image.asset('images/Bag.png')
                 ],
               ),
@@ -100,15 +100,7 @@ class _NikeStorePageState extends State<NikeStorePage> {
                               itemBuilder: (context, index) {
                                 return ItemsList(
                                   products: products[index],
-                                  ontap: () {
-                                    setState(() {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (_) => CartScreen(
-                                                  products: products[index])));
-                                    });
-                                  },
+                                  ontap: () {},
                                 );
                               });
                         }

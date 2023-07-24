@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_import
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -9,7 +9,9 @@ import 'package:laza_practice/General-constants/const.dart';
 import 'package:laza_practice/General-constants/global_button.dart';
 import 'package:laza_practice/General-constants/global_input_field.dart';
 import 'package:laza_practice/General-constants/global_large_text.dart';
+import 'package:laza_practice/Screens/forgot_password_screen.dart';
 import 'package:laza_practice/Screens/home_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -21,6 +23,7 @@ class WelcomeScreen extends StatefulWidget {
 TextEditingController email = TextEditingController();
 TextEditingController password = TextEditingController();
 bool _isclicked = false;
+bool _isloading = false;
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
@@ -47,24 +50,22 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 children: [
                   Padding(
                     padding: EdgeInsets.only(top: size.height * 0.02),
-                    child: BackButton(color: blackcolor, onPressed: () {}),
+                    child: BackButton(
+                        color: blackcolor,
+                        onPressed: () {
+                          setState(() {
+                            Navigator.pop(context);
+                          });
+                        }),
                   ),
                   GlobalLargeText(title: 'Welcome'),
                   Center(
                     child: Text('Please enter your data to continue',
                         style: Theme.of(context).textTheme.bodyMedium),
                   ),
-                  // Spacer(),
                   SizedBox(height: size.height * 0.2),
-
-                  GlobalInputfield(
-                    title: 'Username',
-                    controller: email,
-                  ),
-                  GlobalInputfield(
-                    title: 'Password',
-                    controller: password,
-                  ),
+                  GlobalInputfield(title: 'Username', controller: email),
+                  GlobalInputfield(title: 'Password', controller: password),
                   SizedBox(height: size.height * 0.03),
                   Padding(
                     padding:
@@ -72,14 +73,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     child: Align(
                       alignment: Alignment.centerRight,
                       child: GestureDetector(
-                        onTap: () => Navigator.pushNamed(context, 'FP'),
-                        child: Text(
-                          'Forgot Password?',
-                          style: GoogleFonts.inter(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w500,
-                              color: redcolor),
-                        ),
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => ForgotPasswordScreen())),
+                        child: Text('Forgot Password?',
+                            style: GoogleFonts.inter(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500,
+                                color: redcolor)),
                       ),
                     ),
                   ),
@@ -90,13 +92,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          'Remember me',
-                          style: GoogleFonts.manrope(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w500,
-                              color: blackcolor),
-                        ),
+                        Text('Remember me',
+                            style: GoogleFonts.manrope(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w500,
+                                color: blackcolor)),
                         GestureDetector(
                           onTap: () {
                             setState(() {
@@ -104,40 +104,36 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                             });
                           },
                           child: _isclicked
-                              ? Icon(
-                                  FontAwesomeIcons.toggleOn,
-                                  color: greencolor,
-                                )
-                              : Icon(
-                                  FontAwesomeIcons.toggleOff,
-                                  color: blackcolor,
-                                ),
+                              ? Icon(FontAwesomeIcons.toggleOn,
+                                  color: greencolor)
+                              : Icon(FontAwesomeIcons.toggleOff,
+                                  color: blackcolor),
                         )
                       ],
                     ),
                   ),
-                  Spacer(
-                    flex: 3,
-                  ),
-                  // SizedBox(height: size.height * 0.23),
+                  Spacer(flex: 3),
                   Center(
-                    child: RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(children: [
-                        TextSpan(
-                            text:
-                                'By connecting your account confirm that you agree \nwith our ',
-                            style: Theme.of(context).textTheme.titleSmall),
-                        TextSpan(
-                            text: 'Term and Condition',
-                            style: Theme.of(context).textTheme.bodyLarge)
-                      ]),
-                    ),
-                  ),
+                      child: RichText(
+                          textAlign: TextAlign.center,
+                          text: TextSpan(children: [
+                            TextSpan(
+                                text:
+                                    'By connecting your account confirm that you agree \nwith our ',
+                                style: Theme.of(context).textTheme.titleSmall),
+                            TextSpan(
+                                text: 'Term and Condition',
+                                style: Theme.of(context).textTheme.bodyLarge)
+                          ]))),
                   Spacer(),
                   GlobalButton(
                     title: 'Login',
+                    isLoading: _isloading,
                     ontap: () async {
+                      setState(() {
+                        _isloading = true;
+                      });
+
                       if (_formkey.currentState!.validate()) {
                         debugPrint('success,');
                         LoginModelclass data = LoginModelclass(
@@ -145,7 +141,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                             password: password.text.trim());
 
                         final res = await Loginclass.loginapi(data);
-                        if (res.message == 'Sucessfully Logged in') {
+                        if (res.message == 'Successful') {
+                          final SharedPreferences shared =
+                              await SharedPreferences.getInstance();
+                          shared.setString('name', res.name!);
+                          shared.setString('src', res.image!);
                           debugPrint('data: ${res.token}');
                           setState(() {
                             password.clear();
@@ -153,9 +153,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => HomePage()));
+                                    builder: (context) => HomePage(
+                                        // data: res,
+                                        )));
+                            _isloading = false;
                           });
-                        } else if (res.message == 'Incorret Login Details') {
+                        } else if (res.message == 'Invalid credentials') {
                           // debugPrint('data: ${res.token}');
                           setState(() {
                             password.clear();
@@ -173,8 +176,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                             child: Text('Okay'))
                                       ],
                                     ));
+                            _isloading = false;
                           });
                         }
+                      } else {
+                        setState(() {
+                          email.clear();
+                          password.clear();
+                          _isloading = false;
+                        });
                       }
                     },
                   )

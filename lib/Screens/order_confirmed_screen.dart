@@ -5,14 +5,26 @@ import 'package:laza_practice/General-constants/const.dart';
 import 'package:laza_practice/General-constants/global_button.dart';
 import 'package:laza_practice/Order-Confirmation-components/go_to_orders_button.dart';
 
-class OrderConfirmedScreen extends StatelessWidget {
+class OrderConfirmedScreen extends StatefulWidget {
   const OrderConfirmedScreen({super.key});
 
+  @override
+  State<OrderConfirmedScreen> createState() => _OrderConfirmedScreenState();
+}
+
+class _OrderConfirmedScreenState extends State<OrderConfirmedScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.sizeOf(context);
     return Scaffold(
-      appBar: AppBar(leading: BackButton(onPressed: () {}, color: blackcolor)),
+      appBar: AppBar(
+          leading: BackButton(
+              onPressed: () {
+                setState(() {
+                  Navigator.pop(context);
+                });
+              },
+              color: blackcolor)),
       body: SafeArea(
         child: Container(
           height: size.height,

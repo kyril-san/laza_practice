@@ -9,6 +9,7 @@ import 'package:laza_practice/General-constants/const.dart';
 import 'package:laza_practice/General-constants/global_button.dart';
 import 'package:laza_practice/General-constants/global_input_field.dart';
 import 'package:laza_practice/General-constants/global_large_text.dart';
+import 'package:laza_practice/Screens/welcome_screen.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -109,7 +110,10 @@ class _SignUpPageState extends State<SignUpPage> {
                               password.clear();
                               username.clear();
                               phone.clear();
-                              Navigator.pushNamed(context, 'LGS');
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => WelcomeScreen()));
                             });
                           } else if (response.error ==
                               'User Already Existss ') {
@@ -123,7 +127,10 @@ class _SignUpPageState extends State<SignUpPage> {
                                       ));
                             });
                             Future.delayed(Duration(seconds: 3), () {
-                              Navigator.pushReplacementNamed(context, 'signin');
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => WelcomeScreen()));
                             });
                           } else {
                             setState(() {

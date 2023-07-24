@@ -3,12 +3,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:laza_practice/ApisandUserdata/UserData/products_model.dart';
 
-class Reviews extends StatelessWidget {
+class Reviews extends StatefulWidget {
+  final ProductsModelclass? products;
   const Reviews({
     super.key,
+    this.products,
   });
 
+  @override
+  State<Reviews> createState() => _ReviewsState();
+}
+
+class _ReviewsState extends State<Reviews> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.sizeOf(context);
@@ -41,7 +49,7 @@ class Reviews extends StatelessWidget {
                 text: TextSpan(
                   children: [
                     TextSpan(
-                        text: '4.8 ',
+                        text: '${widget.products!.rating!} ',
                         style: Theme.of(context).textTheme.bodyLarge),
                     TextSpan(
                         text: 'rating',
@@ -52,8 +60,8 @@ class Reviews extends StatelessWidget {
               RatingBar.builder(
                   itemSize: 20,
                   itemCount: 5,
-                  initialRating: 4,
-                  allowHalfRating: false,
+                  initialRating: widget.products!.rating!.toDouble(),
+                  allowHalfRating: true,
                   itemBuilder: ((context, index) {
                     return Icon(
                       Icons.star,

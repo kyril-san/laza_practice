@@ -1,5 +1,5 @@
 class LoginResponseModel {
-  String? id;
+  int? id;
   String? name;
   String? image;
   String? message;
@@ -17,7 +17,7 @@ class LoginResponseModel {
         id: json['id'],
         name: json['firstName'],
         image: json['image'],
-        message: json['message'],
+        message: json['message'] ?? 'Successful',
         token: json['token']);
   }
 }

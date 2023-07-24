@@ -7,11 +7,13 @@ class DrawerListTiles extends StatelessWidget {
   final String title;
   final IconData icon1;
   final IconData? icon2;
+  final Function ontap;
   const DrawerListTiles({
     super.key,
     required this.title,
     required this.icon1,
     this.icon2,
+    required this.ontap,
   });
 
   @override
@@ -31,6 +33,7 @@ class DrawerListTiles extends StatelessWidget {
         size: 48,
         color: blackcolor,
       ),
+      onTap: () => ontap(),
     );
   }
 }

@@ -18,9 +18,6 @@ class GlobalInputfield extends StatelessWidget {
       padding: EdgeInsets.symmetric(
           horizontal: size.width * 0.03, vertical: size.height * 0.01),
       child: TextFormField(
-        onFieldSubmitted: (newValue) {
-          debugPrint(newValue);
-        },
         controller: controller,
         validator: (value) {
           if (value!.isEmpty) {

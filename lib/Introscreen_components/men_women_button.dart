@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:laza_practice/General-constants/const.dart';
+import 'package:laza_practice/Screens/get_started_screen.dart';
 
 class MenandWomenButton extends StatefulWidget {
   final String title;
@@ -23,7 +24,8 @@ class _MenandWomenButtonState extends State<MenandWomenButton> {
     return InkWell(
       onTap: () {
         setState(() {
-          Navigator.pushReplacementNamed(context, 'LGS');
+          Navigator.push(context,
+              MaterialPageRoute(builder: (_) => const LetsGetStartedPage()));
         });
       },
       child: Container(

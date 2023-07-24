@@ -6,15 +6,26 @@ import 'package:laza_practice/General-constants/globa_label_and_save_button.dart
 import 'package:laza_practice/General-constants/global_button.dart';
 import 'package:laza_practice/General-constants/global_label_and_text.dart';
 
-class AddressScreen extends StatelessWidget {
+class AddressScreen extends StatefulWidget {
   const AddressScreen({super.key});
 
+  @override
+  State<AddressScreen> createState() => _AddressScreenState();
+}
+
+class _AddressScreenState extends State<AddressScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.sizeOf(context);
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(onPressed: () {}, color: blackcolor),
+        leading: BackButton(
+            onPressed: () {
+              setState(() {
+                Navigator.pop(context);
+              });
+            },
+            color: blackcolor),
         centerTitle: true,
         title:
             Text('Address', style: Theme.of(context).textTheme.headlineMedium),

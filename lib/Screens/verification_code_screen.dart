@@ -6,9 +6,14 @@ import 'package:laza_practice/General-constants/const.dart';
 import 'package:laza_practice/General-constants/global_button.dart';
 import 'package:laza_practice/General-constants/global_large_text.dart';
 
-class VerificationCodeScreen extends StatelessWidget {
+class VerificationCodeScreen extends StatefulWidget {
   const VerificationCodeScreen({super.key});
 
+  @override
+  State<VerificationCodeScreen> createState() => _VerificationCodeScreenState();
+}
+
+class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.sizeOf(context);
@@ -22,7 +27,13 @@ class VerificationCodeScreen extends StatelessWidget {
         children: [
           Padding(
             padding: EdgeInsets.only(top: size.height * 0.02),
-            child: BackButton(color: blackcolor, onPressed: () {}),
+            child: BackButton(
+                color: blackcolor,
+                onPressed: () {
+                  setState(() {
+                    Navigator.pop(context);
+                  });
+                }),
           ),
           GlobalLargeText(title: 'Verification Code'),
           SizedBox(height: size.height * 0.025),

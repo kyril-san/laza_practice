@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_import, curly_braces_in_flow_control_structures
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_import, curly_braces_in_flow_control_structures, prefer_const_declarations
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -11,11 +11,12 @@ import 'package:laza_practice/Home_page_components/drawer_tile.dart';
 import 'package:laza_practice/Home_page_components/item_list.dart';
 import 'package:laza_practice/Screens/main_page.dart';
 import 'package:laza_practice/Screens/nike_store.dart';
+import 'package:laza_practice/Screens/wish_list.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../ApisandUserdata/UserData/Login_response_model.dart';
 
 class HomePage extends StatefulWidget {
-  // final LoginResponseModel? title;
   const HomePage({
     super.key,
   });
@@ -27,16 +28,29 @@ class HomePage extends StatefulWidget {
 int _currentindex = 0;
 const pages = [
   MainPage(),
+  WishListPage(),
   Center(child: Text('favourite page')),
-  NikeStorePage(),
   Center(child: Text('Wallet page')),
 ];
+String name = '';
+String src =
+    'https://secure.gravatar.com/avatar/cbd701360661a18a5c78940acee7994c?s=560&d=https:%2F%2Fnews.microsoft.com%2Fwp-content%2Fthemes%2Fmicrosoft-news-center-2016%2Fassets%2Fimg%2Fdefault-avatar.png&r=g';
 
 class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    // print(list);
+    getname();
+  }
+
+  Future getname() async {
+    final SharedPreferences shared = await SharedPreferences.getInstance();
+    var getstring = shared.getString('name');
+    var getsrc = shared.getString('src');
+    setState(() {
+      name = getstring!;
+      src = getsrc!;
+    });
   }
 
   @override
@@ -45,11 +59,7 @@ class _HomePageState extends State<HomePage> {
         drawer: SafeArea(
           child: Drawer(
             elevation: 0,
-            child: DrawerTile(
-              title: 'Mr Mrh',
-              src:
-                  "https://secure.gravatar.com/avatar/cbd701360661a18a5c78940acee7994c?s=560&d=https:%2F%2Fnews.microsoft.com%2Fwp-content%2Fthemes%2Fmicrosoft-news-center-2016%2Fassets%2Fimg%2Fdefault-avatar.png&r=g",
-            ),
+            child: DrawerTile(title: name, src: src),
           ),
         ),
         body: pages[_currentindex],

@@ -25,7 +25,11 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
       appBar: AppBar(
         leading: BackButton(
           color: blackcolor,
-          onPressed: () {},
+          onPressed: () {
+            setState(() {
+              Navigator.pop(context);
+            });
+          },
         ),
       ),
       body: GestureDetector(

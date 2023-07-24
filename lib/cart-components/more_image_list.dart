@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 
-class MoreImageList extends StatelessWidget {
+class MoreImageList extends StatefulWidget {
+  final List images;
   const MoreImageList({
     super.key,
+    required this.images,
   });
 
+  @override
+  State<MoreImageList> createState() => _MoreImageListState();
+}
+
+class _MoreImageListState extends State<MoreImageList> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.sizeOf(context);
@@ -14,20 +21,18 @@ class MoreImageList extends StatelessWidget {
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
           shrinkWrap: true,
-          itemCount: 4,
+          itemCount: widget.images.length,
           padding: EdgeInsets.only(left: size.width * 0.01),
           itemBuilder: (context, index) {
             return Container(
-              width: size.width * 0.215,
-              margin: EdgeInsets.only(left: size.width * 0.02),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.grey.withOpacity(0.15)),
-              child: Image.asset(
-                'images/listimage.png',
-                fit: BoxFit.contain,
-              ),
-            );
+                width: size.width * 0.215,
+                margin: EdgeInsets.only(left: size.width * 0.05),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.grey.withOpacity(0.15)),
+                child: Image(
+                  image: NetworkImage(widget.images[index]),
+                ));
           }),
     );
   }

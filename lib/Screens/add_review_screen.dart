@@ -5,16 +5,27 @@ import 'package:laza_practice/General-constants/global_button.dart';
 import 'package:laza_practice/General-constants/global_label_and_text.dart';
 import 'package:laza_practice/General-constants/global_large_text.dart';
 
-class AddReviewPage extends StatelessWidget {
+class AddReviewPage extends StatefulWidget {
   const AddReviewPage({super.key});
 
+  @override
+  State<AddReviewPage> createState() => _AddReviewPageState();
+}
+
+class _AddReviewPageState extends State<AddReviewPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.sizeOf(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        leading: BackButton(onPressed: () {}, color: blackcolor),
+        leading: BackButton(
+            onPressed: () {
+              setState(() {
+                Navigator.pop(context);
+              });
+            },
+            color: blackcolor),
         centerTitle: true,
         title: GlobalLargeText(title: 'Add Review'),
         toolbarHeight: size.height * 0.15,

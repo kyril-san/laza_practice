@@ -25,7 +25,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       appBar: AppBar(
         leading: BackButton(
           color: blackcolor,
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => setState(() {
+            Navigator.pop(context);
+          }),
         ),
       ),
       body: GestureDetector(
