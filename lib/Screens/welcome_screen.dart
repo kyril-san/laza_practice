@@ -153,8 +153,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        HomePage(title: res)));
+                                    builder: (context) => HomePage()));
                           });
                         } else if (res.message == 'Incorret Login Details') {
                           // debugPrint('data: ${res.token}');

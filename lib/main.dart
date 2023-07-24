@@ -34,19 +34,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: 'signin',
-      routes: {
-        '/': (context) => SplashScreenPage(),
-        '/intro': (context) => IntroPage(),
-        'LGS': (context) => LetsGetStartedPage(),
-        'create': (context) => SignUpPage(),
-        'signin': (context) => WelcomeScreen(),
-        // '/home': (context) => HomePage(),
-        '/review': (context) => ReviewScreen(),
-        '/nike': (context) => NikeStorePage(),
-        'FP': (context) => ForgotPasswordScreen(),
-        'OC': (context) => OrderConfirmedScreen(),
-      },
+      // initialRoute: 'signin',
+      // routes: {
+      //   '/': (context) => SplashScreenPage(),
+      //   '/intro': (context) => IntroPage(),
+      //   'LGS': (context) => LetsGetStartedPage(),
+      //   'create': (context) => SignUpPage(),
+      //   'signin': (context) => WelcomeScreen(),
+      //   // '/home': (context) => HomePage(),
+      //   '/review': (context) => ReviewScreen(),
+      //   '/nike': (context) => NikeStorePage(),
+      //   'FP': (context) => ForgotPasswordScreen(),
+      //   'OC': (context) => OrderConfirmedScreen(),
+      // },
       title: 'Laza-Project',
       theme: ThemeData(
           appBarTheme: AppBarTheme(
@@ -56,7 +56,9 @@ class MyApp extends StatelessWidget {
           textTheme: inter,
           scaffoldBackgroundColor: const Color.fromARGB(255, 254, 254, 254),
           visualDensity: VisualDensity.adaptivePlatformDensity),
-      // home: const HomePage(),
+      home: HomePage(
+          // title: null,
+          ),
     );
   }
 }

@@ -1,12 +1,26 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_import
 
 import 'package:flutter/material.dart';
+import 'package:laza_practice/ApisandUserdata/UserData/products_model.dart';
+import 'package:laza_practice/ApisandUserdata/apis/productsapi.dart';
 import 'package:laza_practice/General-constants/const.dart';
 import 'package:laza_practice/Home_page_components/item_list.dart';
 import 'package:laza_practice/Screens/order_confirmed_screen.dart';
 
-class NikeStorePage extends StatelessWidget {
+class NikeStorePage extends StatefulWidget {
   const NikeStorePage({super.key});
+
+  @override
+  State<NikeStorePage> createState() => _NikeStorePageState();
+}
+
+class _NikeStorePageState extends State<NikeStorePage> {
+  late Future<List<ProductsModelclass>> products;
+  @override
+  void initState() {
+    super.initState();
+    products = Products.productsapi();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,16 +72,31 @@ class NikeStorePage extends StatelessWidget {
               Expanded(
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
-                  child: GridView.builder(
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      itemCount: 7,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 0.6,
-                      ),
-                      itemBuilder: (context, index) {
-                        return ItemsList();
+                  child: FutureBuilder(
+                      future: products,
+                      builder: (context, snap) {
+                        final products = snap.data;
+                        if (snap.hasError) {
+                          return Center(
+                            child: Text('Error : ${snap.error}'),
+                          );
+                        } else if (snap.hasData) {
+                          return GridView.builder(
+                              scrollDirection: Axis.vertical,
+                              shrinkWrap: true,
+                              itemCount: products!.length,
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                childAspectRatio: 0.6,
+                              ),
+                              itemBuilder: (context, index) {
+                                return ItemsList(
+                                  products: products[index],
+                                );
+                              });
+                        }
+                        return Center(child: CircularProgressIndicator());
                       }),
                 ),
               )
