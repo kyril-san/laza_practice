@@ -19,7 +19,9 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
   @override
   void initState() {
     super.initState();
-    checkdetails();
+    Future.delayed(Duration(seconds: 5), () {
+      checkdetails();
+    });
   }
 
   void checkdetails() async {

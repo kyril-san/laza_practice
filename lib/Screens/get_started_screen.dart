@@ -35,8 +35,7 @@ class _LetsGetStartedPageState extends State<LetsGetStartedPage> {
   }
 
   void _navigate() {
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (_) => WelcomeScreen()));
+    Navigator.push(context, MaterialPageRoute(builder: (_) => WelcomeScreen()));
     HapticFeedback.vibrate();
   }
 
